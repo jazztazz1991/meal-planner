@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <title>Weekly Meal Planner</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+</head>
+<body>
+<!-- Login Modal -->
+
+
+<main>
+    <div id=""class="row">
+
+        <!-- Left Nav Bar Area-->
+        <div id="dashboard-wrapper" class="col-md-3">
+            <!-- Header Title -->
+            <div class="navbar">
+                <a href="index.html" class="site-header">Weekly Meal Planner</a>
+            </div>
+            <div class="clearfix"></div>
+
+            <!-- Profile Section -->
+            <div id="profile-main" class="clearfix">
+                <div id="profile-pic">
+                    <span class="img-helper">
+                        <img src="http://www.freeiconspng.com/uploads/profile-icon-9.png" class="profile-img" alt="Profile Image">
+                    </span>
+                </div>
+                <div id="profile-info">
+                    <div class="info-helper">
+                        <span class="info-text">Welcome, Jessica</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Nav Section -->
+            <div id="dashboard-nav">
+                <ul id="main-nav">
+                    <li class="meal-planner">
+                        <a><i class="fa fa-calendar" aria-hidden="true"></i>Meal Planner</a>
+                    </li>
+                    <li class="meal-planner">
+                        <a><i class="fa fa-cutlery" aria-hidden="true"></i>Recipes</a>
+                    </li>
+                    <li class="meal-planner">
+                        <a><i class="fa fa-shopping-basket" aria-hidden="true"></i></i>Pantry</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="content-wrapper" class="col-md-9">
+
+            <!-- Main Header Area -->
+            <div id="header">
+
+                <!-- Login Logout Button -->
+                <div id="login-button">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle login-logout" type="button" data-toggle="dropdown">
+                            <img src="http://www.freeiconspng.com/uploads/profile-icon-9.png" class="logged-profile-img" alt="">
+                            <span class="login-text">Jessica</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Logout <i class="fa fa-sign-out float-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Main Page Content Area ( Pages are dynamically loaded into this id - page-content ) -->
+            <div id="page-content"></div>
+
+
+        </div>
+    </div>
+</main>
+
+<footer></footer>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

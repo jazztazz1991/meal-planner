@@ -36,10 +36,6 @@ img {
 /* MAIN HEADER BEGIN */
 	
 #header {
-	position: fixed;
-	top: 0;
-	left: 250px;
-	right: 0;
 	height: 57px;
 	background: #ededed;
 }
@@ -47,6 +43,17 @@ img {
 #login-button {
 	float: right;
 	width: 200px;
+}
+
+#login-button {
+	width: 25%;
+	float: right;
+}
+
+#logBtn {
+	max-width: 150px;
+    float: right;
+    margin-right: 20%;
 }
 
 .login-logout {
@@ -78,6 +85,33 @@ img {
 }
 
 /* MAIN HEADER END */
+
+/* Recipe Search */
+
+#recipe-search-wrapper {
+	width: 100%;
+    height: 60px;
+    padding: 11px 20px;
+    float: left;
+}
+
+#recipeSearchInput {
+	width: 50%;
+	float: left;
+	margin-right: 2px;
+}
+
+#recipeSearchDropdown {
+	width: 26%;
+	float: left;
+	margin-right: 2px;
+}
+
+#recipeSearchBtn {
+	width: 20%;
+	float: left;
+}
+
 
 /* LEFT NAVIGATION BEGIN */
 
@@ -224,12 +258,16 @@ img {
     margin-right: 4px;
 }
 
-#content-wrapper {
-	background: #eee;
-	height: 100%;
-}
-
 /* LEFT NAVIGATION END */
+
+
+/* ALL CONTENT MINUS PAGES */
+
+#content-wrapper {
+	background: #fafafa;
+    height: 100%;
+    padding-left: 265px;
+}
 
 
 

@@ -23,7 +23,7 @@
 
 
 <main>
-    <div id=""class="row">
+    <div id="" class="row">
 
         <!-- Left Nav Bar Area-->
         <div id="dashboard-wrapper">
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <!-- Main Nav Section -->
+            <!-- Link Nav Section -->
             <div id="dashboard-nav">
                 <ul id="main-nav">
                     <li class="meal-planner">
@@ -57,77 +57,53 @@
                         <a><i class="fa fa-cutlery" aria-hidden="true"></i>Recipes</a>
                     </li>
                     <li class="meal-planner">
-                        <a><i class="fa fa-shopping-basket" aria-hidden="true"></i></i>Grocery List</a>
+                        <a><i class="fa fa-shopping-basket" aria-hidden="true"></i>Grocery List</a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <!-- Main Content Area -->
-        <div id="content-wrapper" class="col-md-12">
+        <div id="content-wrapper" class="col s12">
 
             <!-- Main Header Area -->
             <div id="header">
                 <!-- Login Logout Button -->
-                <div id="login-button">
-                    <div id="logBtn" class="dropdown">
-                        <button class="btn btn-default dropdown-toggle login-logout" type="button" data-toggle="dropdown">
-                            <img src="http://www.freeiconspng.com/uploads/profile-icon-9.png" class="logged-profile-img" alt="">
-                            <span class="login-text">Jessica</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Logout <i class="fa fa-sign-out float-right"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
                 <!-- Dropdown Structure -->
-                <ul id="dropdown1" class="dropdown-content">
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
+                <ul id="dropdown1" class="dropdown-content login-button">
+                    <li><a href="#!">Logout <i class="fa fa-sign-out float-right"></i></a></li>
+
                 </ul>
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="#!" class="brand-logo">Logo</a>
                         <ul class="right hide-on-med-and-down">
                             <!-- Dropdown Trigger -->
-                            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li>
+                                <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                    <img src="http://www.freeiconspng.com/uploads/profile-icon-9.png" class="logged-profile-img" alt="">
+                                    <span class="login-text">Jessica</span>
+                                <i class="material-icons right">arrow_drop_down</i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
             </div>
-            <div id="recipe-search-wrapper" class="container">
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <input type="text" class="form-control" id="recipeSearchInput" placeholder="Search for a recipe">
-                        <select class="form-control" id="recipeSearchDropdown">
-                            <option>All</option>
-                            <option>Vegitarian</option>
-                            <option>Healthy</option>
-                        </select>
-                        <button id="recipeSearchBtn" class="btn btn-default">Search</button>
-                    </div>
+            <div id="recipe-search-wrapper" class="row">
+                <div class="form-group col s12">
+                    <input type="text" class="form-control" id="recipeSearchInput" placeholder="Search for a recipe">
+                    <select class="form-control" id="recipeSearchDropdown">
+                        <option>All</option>
+                        <option>Vegitarian</option>
+                        <option>Healthy</option>
+                    </select>
+                    <a id="recipeSearchBtn" class="waves-effect waves-light btn directionBtn">Search</a>
                 </div>
             </div>
-            <!-- Main Page Content Area ( Pages are dynamically loaded into this id - page-content ) -->
-            <div id="page-content" >
-                <div class="recipeCard">
-                    <div class="recipeImg" style="background-image:url('http://haacked.com/images/haacked_com/WindowsLiveWriter/Writing-a-Recipe-in-ASP.NET-MVC-4_1246F/recipe_2.jpg')" alt=""></div>
-                    <div class="recipeInfo">
-                        <a class="btn-floating btn-medium waves-effect waves-light red addToRecipe"><i class="material-icons">add</i></a>
-                        <h4 class="recipeName">Name</h4> 
-                        <select class="form-control recipeIngred" data-ingredients="">
-                            <option>1lb chick</option>
-                            <option>tomato</option>
-                            <option>spices</option>
-                        </select>
-                        <a class="waves-effect waves-light btn directionBtn">Recipe Directions</a>
-                    </div>
-                </div>
-            </div>
-            <p></p>
+
+            <!-- Main Page Content Area ( Pages are dynamically loaded into this iframe id - page-content ). Change the src to load the page on click from the main nav links on the left -->
+            <iframe id="page-content" src="recipes.html"></iframe>
+
         </div>
     </div>
 </main>

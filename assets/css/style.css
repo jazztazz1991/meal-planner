@@ -1,3 +1,6 @@
+html {
+	background: #fafafa;
+}
 body {
 	background: #fff;
 	font-family: 'Raleway', sans-serif;
@@ -5,6 +8,10 @@ body {
 
 a {
 	text-decoration: none !important;
+}
+
+a:hover {
+	color: #fff;
 }
 
 img {
@@ -45,6 +52,15 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    margin: 0;
+}
+
+.btn-default:hover {
+	color: #fff;
+}
+
+.row {
+	margin-bottom: 0;
 }
 
 .green-main {
@@ -53,36 +69,13 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 
 
 /* MAIN HEADER BEGIN */
-	
-#header {
-	height: 57px;
-	background: #ededed;
-}
 
-#login-button {
-	float: right;
-	width: 200px;
-}
+nav {
+	background-color: #1ABB9C;
+}	
 
-#login-button {
-	width: 25%;
-	float: right;
-}
-
-#logBtn {
-	max-width: 150px;
-    float: right;
-    margin-right: 20%;
-}
-
-.login-logout {
-	height: 57px;
-	width: 200px;
-	background: transparent;
-	padding: 10px;
-	border: none;
-	color: #333;
-	border-radius: 0;
+#dropdown1 {
+	top: 64px !important;
 }
 
 .logged-profile-img {
@@ -108,27 +101,27 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 /* Recipe Search */
 
 #recipe-search-wrapper {
-	width: 100%;
-    height: 60px;
-    padding: 11px 10px;
-    float: left;
+    padding: 15px 0 0;
+    border-bottom: 1px solid #ddd;
 }
 
 #recipeSearchInput {
 	width: 50%;
 	float: left;
-	margin-right: 2px;
+	margin-right: 1%;
 }
 
 #recipeSearchDropdown {
 	width: 26%;
 	height: 48px;
 	float: left;
-	margin-right: 2px;
+	margin-right: 1%;
 }
 
 #recipeSearchBtn {
-	width: 20%;
+	width: 19%;
+	height: 48px;
+	line-height: 48px;
 	float: left;
 }
 
@@ -286,40 +279,54 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 #content-wrapper {
 	background: #fafafa;
     height: 100%;
-    margin-left: 250px;
-    padding: 0;
+    padding: 0 0 0 250px;
 }
 
-#page-content {
-	float: left;
+iframe {
+	width: 100%;
+	border: none;
+	height: calc(100vh - 150px);
+}
+
+#recipe-wrapper {
+	background: #fafafa;
 	padding: 15px;
 	clear: both;
+	text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+}
+
+#recipe-wrapper:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
 }
 
 /* RECIPE MENU CARDS*/
-    padding-left: 265px;
+
+
+.card {
+    vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    zoom: 1
 }
 
 .recipeCard {
-    float: left;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    background: #fff;
     width: 275px;
 }
 
-.recipeCard:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.recipeImg {
+    width:  265px !important;
+    height: 265px;
+    margin: 5px;
 }
 
-.recipeImg {
-	position: relative;
-    float: left;
-    width:  275px;
-    height: 200px;
-    background-position: 50% 50%;
-    background-repeat:   no-repeat;
-    background-size:     cover;
+.card-content {
+	padding: 5px 5px 30px 5px !important;
 }
 
 .recipeInfo {
@@ -329,7 +336,27 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 
 .recipeName {
 	font-size: 1.5em;
-	margin-top: 210px;
+}
+
+.recipeCalories, .recipeProtien, .recipeFat {
+ width: 33.333%;
+ padding: 1%;
+ float: left;
+ color: #fff;
+ text-align: center;
+ margin-bottom: 10px;
+}
+
+.recipeCalories {
+	background: steelblue;
+}
+
+.recipeProtien {
+	background: purple;
+}
+
+.recipeFat {
+	background: orange;
 }
 
 .addToRecipe {

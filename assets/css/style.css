@@ -297,6 +297,8 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 }
 
 /* RECIPE MENU CARDS*/
+    padding-left: 265px;
+}
 
 .recipeCard {
     float: left;

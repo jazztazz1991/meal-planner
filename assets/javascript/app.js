@@ -1,3 +1,19 @@
+  /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    $("#dashboard-wrapper").css("width", "250px");
+    $("#content-wrapper").css("paddingLeft", "250px");
+    $(".nav-closed").css("display", "none");
+    $(".nav-open").css("display", "initial");
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    $("#dashboard-wrapper").css("width", "0px");
+    $("#content-wrapper").css("paddingLeft", "0px");
+    $(".nav-closed").css("display", "initial");
+    $(".nav-open").css("display", "none");
+}
+
   var foodKey = "f9e3dbd1";
   var foodAppKey = "8d725288375b632e8ca8b8f5e89d9394";
   var foodSearch = "";

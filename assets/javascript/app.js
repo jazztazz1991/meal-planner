@@ -1,3 +1,6 @@
+  
+
+// Daniel's page navigation along with menu collapse
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
     $("#dashboard-wrapper").css("width", "250px");
@@ -13,6 +16,40 @@ function closeNav() {
     $(".nav-closed").css("display", "initial");
     $(".nav-open").css("display", "none");
 }
+
+$(".homeLink").on("click", function () {
+  $(".homeLink").addClass("active-page");
+  $(".mealLink").removeClass("active-page");
+  $(".recipeLink").removeClass("active-page");
+  $(".groceryLink").removeClass("active-page");
+  $("#page-content").attr("src", "mainDashboard.html");
+});
+
+$(".mealLink").on("click", function () {
+  $(".homeLink").removeClass("active-page");
+  $(".mealLink").addClass("active-page");
+  $(".recipeLink").removeClass("active-page");
+  $(".groceryLink").removeClass("active-page");
+  $("#page-content").attr("src", "MealPlanner.html");
+});
+
+$(".recipeLink").on("click", function () {
+  $(".homeLink").removeClass("active-page");
+  $(".mealLink").removeClass("active-page");
+  $(".recipeLink").addClass("active-page");
+  $(".groceryLink").removeClass("active-page");
+  $("#page-content").attr("src", "recipes.html");
+});
+
+$(".groceryLink").on("click", function () {
+  $(".homeLink").removeClass("active-page");
+  $(".mealLink").removeClass("active-page");
+  $(".recipeLink").removeClass("active-page");
+  $(".groceryLink").addClass("active-page");
+  $("#page-content").attr("src", "pantry.html");
+});
+// END Daniel's code
+
 
   var foodKey = "f9e3dbd1";
   var foodAppKey = "8d725288375b632e8ca8b8f5e89d9394";

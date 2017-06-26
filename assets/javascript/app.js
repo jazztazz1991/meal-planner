@@ -50,42 +50,81 @@ $(".groceryLink").on("click", function () {
 });
 // END Daniel's code
 
-  var foodKey = "f9e3dbd1";
-  var foodAppKey = "8d725288375b632e8ca8b8f5e89d9394";
-  var foodSearch = "";
-  var suggestedFood = ["pizza", "chicken marsala", "shrimp"];
-  var recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=10";
+      var foodKey = "f9e3dbd1";
+ var foodAppKey = "8d725288375b632e8ca8b8f5e89d9394";
+ var foodSearch = "";
+ var suggestedFood = ["pizza", "chicken marsala", "shrimp"];
+ var recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
+var caloriesPer;
+var fatPer;
+var proteinPer;
+var foodLink;
+var foodPicture;
+var foodName;
+
+var caloriesPerArray=[];
+var fatPerArray = [];
+var proteinPerArray = [];
+var foodLinkArray=[];
+var foodPictureArray=[];
+var foodNameArray=[];
 
 
-  $("#foodBtn").on("click", function() {
-  	foodSearch = $("#foodInput").val().trim();
-  	recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey;
-  	$.ajax({
-  	url: recipeUrl,
-  	method: 'GET'
-  	}).done(function(response) {
-  	
+ $("#recipeSearchBtn").on("click", function() {
+     console.log("running");
+       foodSearch = $("#recipeSearchInput").val().trim();
+     console.log(foodSearch);
+       recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
+       $.ajax({
+         url: recipeUrl,
+         method: 'GET'
+       }).done(function(response) {
+           console.log(response);
+         for (var i = 0; i < response.hits.length; i++) {
+
+             //get name picture and link from api
+            foodName = response.hits[i].recipe.label;
+            foodNameArray.push(response.hits[i].recipe.label);
+            foodPicture = response.hits[i].recipe.image;
+            foodPictureArray.push(response.hits[i].recipe.image);
+            foodLink = response.hits[i].recipe.url;
+            foodLinkArray.push(response.hits[i].recipe.url);
+
+             console.log(foodName);
+             console.log(foodPicture);
+             console.log(foodLink);
+             
+             
+             //get nutrients and get per serving
+            var calories = response.hits[i].recipe.calories;
+            var recipeYield = response.hits[i].recipe.yield;
+            caloriesPer = calories / recipeYield;
+            caloriesPer = Math.round(caloriesPer);
+            caloriesPerArray.push(Math.round(caloriesPer));
+
+             $("#recipe-wrapper").append(foodName);
+             
+             $("#recipe-wrapper").append("<div class='card recipeCard'> <a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a> <div class='card-image waves-effect waves-block waves-light'> <img class='activator recipeImg' src='" + foodPicture + "'></div> <div> class='card-content'><span class='card-title activator grey-text text-darken-4 recipeName'>" + foodName + "<i class='material-icons right'>more_vert</i></span><p><div class='recipeColories'><p>Cal: " + caloriesPer + "</p></div><div class='recipeProtein'><p>P: 450</p></div><div class='recipeFat'><p>Fat: 450</p></div></p><p><a class='waves-effect waves-light btn directionBtn'>Recipe Directions</a></p></div><div class='card-reveal'><span class='card-title grey-text text-darken-4 recipeName'> " + foodName + "<i class='material-icons right'>close</i></span><p class='recipeDirections'>Here is some more information about this product that is only revealed once clicked on.</p></div></div>" );
 
 
-  	// var foodPic = $("<img>");
-   //  foodPic.attr("data-name", topics[i]);
-   //  foodPic.attr("class", "foodImg");
-   //  foodPic.attr("src", frozenImgUrl);
-   //  $("#recipeSection").append(foodPic);
-  	// console.log(foodSearch);
-  	// console.log(response);
-  	console.log(response);
 
-  	for (var i = 0; i < response.hits.length; i++) {
-  		console.log(response.hits[i].recipe.label);
-  	
-
-  	for (var j = 0; j < response.hits[j].recipe.ingredientLines.length; j++) {
-  		console.log(response.hits[i].recipe.ingredientLines[j]);
-  	}
-  }
+          }
 
 
 
-  	});
-  });
+      });
+     });
+
+ function allowDrop(ev){
+   ev.preventDefault();
+ }
+
+ function drag(ev){
+   ev.dataTransfer.setData("text", ev.target.id);
+ }
+
+ function drop(ev){
+   ev.preventDefault();
+   var data = ev.dataTransfer.getData("text");
+   ev.target.appendChild(document.getElementById(data));
+ }

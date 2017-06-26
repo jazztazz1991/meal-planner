@@ -465,6 +465,22 @@ iframe {
 
 
 
+/* GROCERY/PANTRY PAGE */
+
+.grocery-amount {
+	max-width: 50px
+}
+#grocery-amount-input {
+	width: 20px;
+	float: left;
+}
+
+.minus-circle, .plus-circle {
+	color: #2848b1;
+	float: right;
+}
+
+
 
 
 

@@ -489,7 +489,13 @@ iframe {
     margin: 5px;
     float: left;
 }
-
+.mealPlanRecipes{
+    width: 30%;
+    height: 400px;
+/*    float:left;*/
+    display: inline-block;
+    margin: 5px;
+}
 
 /* RESPONSIVE */
 

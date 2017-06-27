@@ -1,3 +1,18 @@
+  var config = {
+    apiKey: "AIzaSyDL6UB_tJtkTUOf5-iXcpu6DoQ-QZKRX-w",
+    authDomain: "chicken-mcthugget.firebaseapp.com",
+    databaseURL: "https://chicken-mcthugget.firebaseio.com",
+    projectId: "chicken-mcthugget",
+    storageBucket: "chicken-mcthugget.appspot.com",
+    messagingSenderId: "1085240631351"
+  };
+  firebase.initializeApp(config);
+
+var database = firebase.database();
+
+
+
+
 
 // Daniel's page navigation along with menu collapse
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
@@ -60,6 +75,7 @@ var proteinPer;
 var foodLink;
 var foodPicture;
 var foodName;
+var foodIngredients;
 var index;
 
 var caloriesPerArray=[];
@@ -68,6 +84,7 @@ var proteinPerArray = [];
 var foodLinkArray=[];
 var foodPictureArray=[];
 var foodNameArray=[];
+var ingredientListArray = [];
 
 
  $("#recipeSearchBtn").on("click", function() {
@@ -88,6 +105,11 @@ var foodNameArray=[];
             foodLink = response.hits[i].recipe.url;
             foodLinkArray.push(response.hits[i].recipe.url);
              
+            
+            ingredientListArray.push(response.hits[i].recipe.ingredientLines);
+              
+             console.log("=================================");
+             
              
              //get nutrients and get per serving
              var calories = response.hits[i].recipe.calories;
@@ -107,7 +129,12 @@ var foodNameArray=[];
           }
            addToMealPlan();
 
-
+           console.log("end of loops");
+for(var k = 0; k < ingredientListArray; k++){
+    console.log("ingredient array")
+    console.log(ingredientListArray[k]);
+    console.log("=========================");
+}
       });
      });
 
@@ -116,8 +143,20 @@ function addToMealPlan(){
         index = $(this).attr("data-index");
         var photo = [];
         var name = [];
+        var ingredients = [];
         photo.push(foodPictureArray[index]);
         name.push(foodNameArray[index]);
+        ingredients.push(ingredientListArray[index]);
+        
+        var foodInfo = {
+            foodName:name,
+            foodPic:photo,
+            foodIngredients:ingredients,
+            key: database.ref().push().key
+        }
+        //push key
+        database.ref().child(foodInfo.key).set(foodInfo);
+       
     })
 }
 
@@ -134,3 +173,7 @@ function addToMealPlan(){
    var data = ev.dataTransfer.getData("text");
    ev.target.appendChild(document.getElementById(data));
  }
+
+
+
+

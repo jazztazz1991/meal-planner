@@ -1,16 +1,4 @@
-//firebase
-// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDL6UB_tJtkTUOf5-iXcpu6DoQ-QZKRX-w",
-    authDomain: "chicken-mcthugget.firebaseapp.com",
-    databaseURL: "https://chicken-mcthugget.firebaseio.com",
-    projectId: "chicken-mcthugget",
-    storageBucket: "chicken-mcthugget.appspot.com",
-    messagingSenderId: "1085240631351"
-  };
-  firebase.initializeApp(config);
 
-var database = firebase.database();
 // Daniel's page navigation along with menu collapse
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {

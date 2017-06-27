@@ -195,11 +195,18 @@ var provider = new firebase.auth.GoogleAuthProvider();
 //});
 //}
 
-$("#abcRioButtonContentWrapper").on("click",function(event){
-	var provider = new firebase.auth.GoogleAuthProvider();
 
-	firebase.auth().signInWithRedirect(provider)
-		.catch(function(error){
-			console.log("google sign in error", error);
+
+$("#abcRioButtonContentWrapper").on("click",function(event){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+ // This gives you a Google Access Token.
+    var token = result.credential.accessToken;
+ // The signed-in user info.
+    var user = result.user;
+});
+
 		});
 

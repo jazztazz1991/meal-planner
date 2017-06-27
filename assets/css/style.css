@@ -481,7 +481,14 @@ iframe {
 }
 
 
-
+/*Meal Planner Page*/
+.box{
+    background-color: grey;
+    width: 18%;
+    height: auto;
+    margin: 5px;
+    float: left;
+}
 
 
 /* RESPONSIVE */

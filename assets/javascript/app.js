@@ -1,5 +1,16 @@
-  
+//firebase
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDL6UB_tJtkTUOf5-iXcpu6DoQ-QZKRX-w",
+    authDomain: "chicken-mcthugget.firebaseapp.com",
+    databaseURL: "https://chicken-mcthugget.firebaseio.com",
+    projectId: "chicken-mcthugget",
+    storageBucket: "chicken-mcthugget.appspot.com",
+    messagingSenderId: "1085240631351"
+  };
+  firebase.initializeApp(config);
 
+var database = firebase.database();
 // Daniel's page navigation along with menu collapse
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
@@ -61,6 +72,7 @@ var proteinPer;
 var foodLink;
 var foodPicture;
 var foodName;
+var index;
 
 var caloriesPerArray=[];
 var fatPerArray = [];
@@ -73,13 +85,11 @@ var foodNameArray=[];
  $("#recipeSearchBtn").on("click", function() {
      console.log("running");
        foodSearch = $("#recipeSearchInput").val().trim();
-     console.log(foodSearch);
        recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
        $.ajax({
          url: recipeUrl,
          method: 'GET'
        }).done(function(response) {
-           console.log(response);
          for (var i = 0; i < response.hits.length; i++) {
 
              //get name picture and link from api
@@ -89,31 +99,39 @@ var foodNameArray=[];
             foodPictureArray.push(response.hits[i].recipe.image);
             foodLink = response.hits[i].recipe.url;
             foodLinkArray.push(response.hits[i].recipe.url);
-
-             console.log(foodName);
-             console.log(foodPicture);
-             console.log(foodLink);
              
              
              //get nutrients and get per serving
-            var calories = response.hits[i].recipe.calories;
-            var recipeYield = response.hits[i].recipe.yield;
-            caloriesPer = calories / recipeYield;
-            caloriesPer = Math.round(caloriesPer);
-            caloriesPerArray.push(Math.round(caloriesPer));
-
-             $("#recipe-wrapper").append(foodName);
-             
-             $("#recipe-wrapper").append("<div class='card recipeCard'> <a class='btn-floating halfway-fab waves-effect waves-light red'><i class='material-icons'>add</i></a> <div class='card-image waves-effect waves-block waves-light'> <img class='activator recipeImg' src='" + foodPicture + "'></div> <div> class='card-content'><span class='card-title activator grey-text text-darken-4 recipeName'>" + foodName + "<i class='material-icons right'>more_vert</i></span><p><div class='recipeColories'><p>Cal: " + caloriesPer + "</p></div><div class='recipeProtein'><p>P: 450</p></div><div class='recipeFat'><p>Fat: 450</p></div></p><p><a class='waves-effect waves-light btn directionBtn'>Recipe Directions</a></p></div><div class='card-reveal'><span class='card-title grey-text text-darken-4 recipeName'> " + foodName + "<i class='material-icons right'>close</i></span><p class='recipeDirections'>Here is some more information about this product that is only revealed once clicked on.</p></div></div>" );
-
-
-
+             var calories = response.hits[i].recipe.calories;
+             var protein = response.hits[i].recipe.totalNutrients.PROCNT.quantity;
+             var fat = response.hits[i].recipe.totalNutrients.FAT.quantity;
+             var recipeYield = response.hits[i].recipe.yield;
+             caloriesPer = calories / recipeYield;
+             caloriesPer = Math.round(caloriesPer);
+             caloriesPerArray.push(Math.round(caloriesPer));
+             proteinPer = protein / recipeYield;
+             proteinPer = Math.round(proteinPer);
+             proteinPerArray.push(Math.round(proteinPer));
+             fatPer = fat / recipeYield;
+             fatPer = Math.round(fatPer);
+             fatPerArray.push(Math.round(fatPer));
+             $("iframe").contents().find("#recipeWrapper").append("<div class='card recipeCard'> <a class='addBtn btn-floating halfway-fab waves-effect waves-light red addedBtn' data-index='" + i + "'><i class='material-icons'>add</i></a> <div class='card-image waves-effect waves-block waves-light'> <img class='activator recipeImg' src='" + foodPicture + "'></div> <div class='card-content'><span class='card-title activator grey-text text-darken-4 recipeName'>" + foodName + "<i class='material-icons right'>more_vert</i></span><div class='recipeCalories'><p>Cal: " + caloriesPer + "</p></div><div class='recipeProtein'><p>P: " + proteinPer + "</p></div><div class='recipeFat'><p>Fat: " + fatPer + "</p></div><p><a class='waves-effect waves-light btn directionBtn'>Recipe Directions</a></p><div class='card-reveal'><span class='card-title grey-text text-darken-4 recipeName'> " + foodName + "<i class='material-icons right'>close</i></span><p class='recipeDirections'>Here is some more information about this product that is only revealed once clicked on.</p></div></div>" );
           }
-
+           addToMealPlan();
 
 
       });
      });
+
+function addToMealPlan(){
+    $("iframe").contents().find(".addedBtn").on("click", function(){
+        index = $(this).attr("data-index");
+        var photo = [];
+        var name = [];
+        photo.push(foodPictureArray[index]);
+        name.push(foodNameArray[index]);
+    })
+}
 
  function allowDrop(ev){
    ev.preventDefault();

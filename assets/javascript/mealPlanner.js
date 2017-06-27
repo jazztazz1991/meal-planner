@@ -16,10 +16,8 @@ var database = firebase.database();
 database.ref().on("child_added", function(childSnapshot, prevChildKey){       
     var foodNamePicked = childSnapshot.val().foodName;
             var foodImgPicked = childSnapshot.val().foodPic;
-            console.log("===");
-            console.log(foodNamePicked);
-            console.log("===");
-            $("#recipeSection").append("<div class='mealPlanRecipes' > <img id='recipe" + childSnapshot.val().key + "' draggable='true' ondragstart='drag(event)' src='" + foodImgPicked + "'><p>" + foodNamePicked + "</p></div>");
+    var recipeUrl = childSnapshot.val().url;
+            $("#recipeSection").append("<div class='mealPlanRecipes' id='recipe" + childSnapshot.val().key + "' draggable='true' ondragstart='drag(event)'> <img  data-index='" + recipeUrl + "' src='" + foodImgPicked + "'><p>" + foodNamePicked + "</p></div>");
         })
 
 

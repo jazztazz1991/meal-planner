@@ -88,7 +88,6 @@ var ingredientListArray = [];
 
 
  $("#recipeSearchBtn").on("click", function() {
-     console.log("running");
        foodSearch = $("#recipeSearchInput").val().trim();
        recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
        $.ajax({
@@ -96,8 +95,9 @@ var ingredientListArray = [];
          method: 'GET'
        }).done(function(response) {
          for (var i = 0; i < response.hits.length; i++) {
-
-             //get name picture and link from api
+             
+            foodLink = response.hits[i].recipe.url;
+            foodLinkArray.push(response.hits[i].recipe.url);
             foodName = response.hits[i].recipe.label;
             foodNameArray.push(response.hits[i].recipe.label);
             foodPicture = response.hits[i].recipe.image;
@@ -107,8 +107,6 @@ var ingredientListArray = [];
              
             
             ingredientListArray.push(response.hits[i].recipe.ingredientLines);
-              
-             console.log("=================================");
              
              
              //get nutrients and get per serving
@@ -125,16 +123,10 @@ var ingredientListArray = [];
              fatPer = fat / recipeYield;
              fatPer = Math.round(fatPer);
              fatPerArray.push(Math.round(fatPer));
-             $("iframe").contents().find("#recipeWrapper").append("<div class='card recipeCard'> <a class='addBtn btn-floating halfway-fab waves-effect waves-light red addedBtn' data-index='" + i + "'><i class='material-icons'>add</i></a> <div class='card-image waves-effect waves-block waves-light'> <img class='activator recipeImg' src='" + foodPicture + "'></div> <div class='card-content'><span class='card-title activator grey-text text-darken-4 recipeName'>" + foodName + "<i class='material-icons right'>more_vert</i></span><div class='recipeCalories'><p>Cal: " + caloriesPer + "</p></div><div class='recipeProtein'><p>P: " + proteinPer + "</p></div><div class='recipeFat'><p>Fat: " + fatPer + "</p></div><p><a class='waves-effect waves-light btn directionBtn'>Recipe Directions</a></p><div class='card-reveal'><span class='card-title grey-text text-darken-4 recipeName'> " + foodName + "<i class='material-icons right'>close</i></span><p class='recipeDirections'>Here is some more information about this product that is only revealed once clicked on.</p></div></div>" );
+             $("iframe").contents().find("#recipeWrapper").append("<div class='card recipeCard'> <a class='addBtn btn-floating halfway-fab waves-effect waves-light red addedBtn' data-index='" + i + "'><i class='material-icons'>add</i></a> <div class='card-image waves-effect waves-block waves-light'> <img class='activator recipeImg' src='" + foodPicture + "'></div> <div class='card-content'><span class='card-title activator grey-text text-darken-4 recipeName'>" + foodName + "<i class='material-icons right'>more_vert</i></span><div class='recipeCalories'><p>Cal: " + caloriesPer + "</p></div><div class='recipeProtein'><p>P: " + proteinPer + "</p></div><div class='recipeFat'><p>Fat: " + fatPer + "</p></div><p><a class='waves-effect waves-light btn directionBtn' href='" + foodLink + "'>Recipe Directions</a></p><div class='card-reveal'><span class='card-title grey-text text-darken-4 recipeName'> " + foodName + "<i class='material-icons right'>close</i></span><p class='recipeDirections'>Here is some more information about this product that is only revealed once clicked on.</p></div></div>" );
           }
            addToMealPlan();
 
-           console.log("end of loops");
-for(var k = 0; k < ingredientListArray; k++){
-    console.log("ingredient array")
-    console.log(ingredientListArray[k]);
-    console.log("=========================");
-}
       });
      });
 
@@ -144,14 +136,17 @@ function addToMealPlan(){
         var photo = [];
         var name = [];
         var ingredients = [];
+        var url = [];
         photo.push(foodPictureArray[index]);
         name.push(foodNameArray[index]);
         ingredients.push(ingredientListArray[index]);
+        url.push(foodlLinkArray[index]);
         
         var foodInfo = {
             foodName:name,
             foodPic:photo,
             foodIngredients:ingredients,
+            url: url,
             key: database.ref().push().key
         }
         //push key

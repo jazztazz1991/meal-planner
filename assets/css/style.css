@@ -401,6 +401,7 @@ iframe {
 
 .recipeCard {
     width: 275px;
+    margin: 10px;
 }
 
 .recipeImg {
@@ -419,7 +420,7 @@ iframe {
 }
 
 .recipeName {
-	font-size: 1.5em;
+	font-size: 1.1em !important;
 }
 
 .recipeCalories, .recipeProtien, .recipeFat {
@@ -460,6 +461,12 @@ iframe {
 
 .directionBtn:hover {
 	color: #fff;
+}
+
+.recipe-details {
+	margin-bottom: 10px;
+	display: inline-block;
+    width: 100%;
 }
 
 

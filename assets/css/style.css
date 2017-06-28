@@ -476,10 +476,25 @@ iframe {
 
 
 /* GROCERY/PANTRY PAGE */
+#grocery-finder {
+	width: 100%;
+	box-sizing: inherit;
+	margin-bottom: 20px;
+}
+
+.zipcode-search {
+	padding: 0 !important;
+}
+
+#grocery-map {
+	background: red;
+	min-height: 200px;
+}
 
 .grocery-amount {
 	max-width: 50px
 }
+
 #grocery-amount-input {
 	width: 20px;
 	float: left;

@@ -423,7 +423,7 @@ iframe {
 	font-size: 1.1em !important;
 }
 
-.recipeCalories, .recipeProtien, .recipeFat {
+.recipeCalories, .recipeProtein, .recipeFat {
  width: 33.333%;
  padding: 1%;
  float: left;
@@ -436,7 +436,7 @@ iframe {
 	background: steelblue;
 }
 
-.recipeProtien {
+.recipeProtein {
 	background: purple;
 }
 

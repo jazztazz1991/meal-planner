@@ -21,50 +21,36 @@
 
 <div class="mealplanner-wrapper">
 
-	
-
 	<div class="container">
-        <div class="row">
-            
-            <div class="col-md-2">
-                <div id="box1" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><p>Monday</p>
-
-                </div>
+        <div class="row meal-planner-contents">
+        	<div class="col drag-box">
+            	<div id="box1" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><p>Monday</p></div>
             </div>
-            
-            <div class="col-md-2">
-                <div id="box2" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><legend>Tuesday</legend>
-
-                </div>
+            <div class="col drag-box">
+            	<div id="box2" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><p>Tuesday</p></div>
             </div>
-            
-            <div class="col-md-2">
-                <div id="box3" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><legend>Wednesday</legend>
-
-                </div>
+            <div class="col drag-box">
+            	<div id="box3" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><p>Wednesday</p></div>
             </div>
-            
-            <div class="col-md-2">
-                <div id="box4" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><legend>Thursday</legend>
-
-                </div>
+            <div class="col drag-box">
+            	<div id="box4" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><p>Thursday</p></div>
             </div>
-
-            <div class="col-md-2">
-                <div id="box5" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><legend>Friday</legend>
-
-                </div>
+            <div class="col drag-box">
+            	<div id="box5" class="box" ondrop="drop(event)" ondragover="allowDrop(event)"><p>Friday</p></div>
             </div>
-            
         </div>
-        
+
         <div class="row">
-            <div class="col-md-6">
-                <div id="recipeSection"><legend>Recipes</legend>
+        	<div class="col s12">
+                <div id="options-section"><legend>Options</legend></div>
+                <div id="options">
+                	<div id="goOut" class="default-options"><p>Go Out</p></div>
+                	<div id="leftovers" class="default-options"><p>Leftovers</p></div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div id="goOut"><legend>Options</legend>
+
+            <div class="col s12">
+                <div id="recipeSection"><legend>Recipes</legend>
                 </div>
             </div>
         </div>

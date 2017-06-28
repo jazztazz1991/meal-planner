@@ -1,3 +1,5 @@
+
+
   var config = {
     apiKey: "AIzaSyDL6UB_tJtkTUOf5-iXcpu6DoQ-QZKRX-w",
     authDomain: "chicken-mcthugget.firebaseapp.com",

@@ -21,7 +21,21 @@
 
 <div id="grocery-wrapper">
 	<div class="grocery-list">
-		<table class="striped highlight responsive-table">
+		<div class="container">
+			<div class="row">
+				<h3 class="col s12">Search for a grocery store near you</h3>
+			</div>
+			<div class="row">
+				<div class="col s12 zipcode-search">
+					<input type="text" class="form-control" id="grocery-finder" placeholder="Enter Zipcode">
+				</div>
+			</div>
+			<div class="row">
+				<div id="grocery-map" class="col s12"></div>
+			</div>
+		</div>
+	</div>
+<!-- 		<table class="striped highlight responsive-table">
 			<thead>
 				<tr>
 					<th>Item</th>
@@ -40,7 +54,7 @@
 					<td><a class="btn-floating btn-small waves-effect waves-light green darken-1"><i class="material-icons">done</i></a></td>
 				</tr>
 			</tbody>
-		</table>
+		</table> -->
 	</div>
 </div>
 

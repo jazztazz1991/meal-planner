@@ -66,9 +66,6 @@ $(".groceryLink").on("click", function() {
   $(".recipeLink").removeClass("active-page");
   $(".groceryLink").addClass("active-page");
   $("#page-content").attr("src", "pantry.html");
-    initMap();
-    callback();
-    createMarker();
 });
 
 //Login code

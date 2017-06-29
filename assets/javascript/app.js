@@ -196,7 +196,7 @@ function signIn (){
         
         var email = result.email;
         
-        database.ref().set(user)
+        database.ref().set(user);
         
         $(".info-text").html(user);
         $(".login-text").html(user);

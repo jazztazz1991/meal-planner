@@ -11,7 +11,7 @@
   firebase.initializeApp(config);
 
 var database = firebase.database();
-
+var user;
 
 
 
@@ -111,7 +111,7 @@ var foodPictureArray=[];
 var foodNameArray=[];
 var ingredientListArray = [];
 
-
+function recipeSearch(){
  $("#recipeSearchBtn").on("click", function() {
      $(".homeLink").removeClass("active-page");
      $(".mealLink").removeClass("active-page");
@@ -160,6 +160,7 @@ var ingredientListArray = [];
 
       });
      });
+}
 
 function addToMealPlan(){
     $("iframe").contents().find(".addedBtn").on("click", function(){
@@ -181,24 +182,10 @@ function addToMealPlan(){
             key: database.ref().push().key
         }
         //push key
-        database.ref().child(foodInfo.key).set(foodInfo);
+        database.ref().child(user).set(foodInfo);
        
     })
 }
-
- function allowDrop(ev){
-   ev.preventDefault();
- }
-
- function drag(ev){
-   ev.dataTransfer.setData("text", ev.target.id);
- }
-
- function drop(ev){
-   ev.preventDefault();
-   var data = ev.dataTransfer.getData("text");
-   ev.target.appendChild(document.getElementById(data));
- }
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -207,18 +194,15 @@ function signIn (){
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // The signed-in user info.
-      var user = result.user;
+      user = result.user;
         
         var email = result.email;
         
-        database.ref().child(user).set({
-            token: token,
-            user: user,
-            email: email
-        })
+        database.ref().set(user)
         
         $(".info-text").html(user);
         $(".login-text").html(user);
+        recipeSearch();
   // ...
     }).catch(function(error) {
       // Handle Errors here.
@@ -238,24 +222,6 @@ function signOut(){
         
     })
 }
-
-
-//$("#abcRioButtonContentWrapper").on("click",function(event){
-//    var provider = new firebase.auth.GoogleAuthProvider();
-//    provider.addScope('profile');
-//    provider.addScope('email');
-//    firebase.auth().signInWithPopup(provider).then(function(result) {
-// // This gives you a Google Access Token.
-//    var token = result.credential.accessToken;
-// // The signed-in user info.
-//    var user = result.user;
-//});
-//
-//		});
-
-
-
-
 
    var map;
       var infowindow;

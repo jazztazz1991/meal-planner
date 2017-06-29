@@ -1,3 +1,5 @@
+
+
   var config = {
     apiKey: "AIzaSyDL6UB_tJtkTUOf5-iXcpu6DoQ-QZKRX-w",
     authDomain: "chicken-mcthugget.firebaseapp.com",
@@ -9,9 +11,8 @@
   firebase.initializeApp(config);
 
 var database = firebase.database();
-var user;
 
-var provider = new firebase.auth.GoogleAuthProvider();
+
 
 
 
@@ -66,6 +67,9 @@ $(".groceryLink").on("click", function() {
   $(".recipeLink").removeClass("active-page");
   $(".groceryLink").addClass("active-page");
   $("#page-content").attr("src", "pantry.html");
+    initMap();
+    callback();
+    createMarker();
 });
 
 //Login code
@@ -89,7 +93,7 @@ $("#dropdown1").on("click", function() {
  var foodAppKey = "8d725288375b632e8ca8b8f5e89d9394";
  var foodSearch = "";
  var suggestedFood = ["pizza", "chicken marsala", "shrimp"];
- var recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
+ var recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&healtLabels='vegan'&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
 var caloriesPer;
 var fatPer;
 var proteinPer;
@@ -106,6 +110,7 @@ var foodLinkArray=[];
 var foodPictureArray=[];
 var foodNameArray=[];
 var ingredientListArray = [];
+
 
  $("#recipeSearchBtn").on("click", function() {
      $(".homeLink").removeClass("active-page");
@@ -176,10 +181,24 @@ function addToMealPlan(){
             key: database.ref().push().key
         }
         //push key
-        database.ref().child(childSnapshot.val().key).set(foodInfo);
+        database.ref().child(foodInfo.key).set(foodInfo);
        
     })
 }
+
+ function allowDrop(ev){
+   ev.preventDefault();
+ }
+
+ function drag(ev){
+   ev.dataTransfer.setData("text", ev.target.id);
+ }
+
+ function drop(ev){
+   ev.preventDefault();
+   var data = ev.dataTransfer.getData("text");
+   ev.target.appendChild(document.getElementById(data));
+ }
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -188,14 +207,16 @@ function signIn (){
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // The signed-in user info.
-      user = result.user;
+      var user = result.user;
         
         var email = result.email;
         
-        database.ref().set({
-            user: user
-        });
-        
+        database.ref().child(user).set({
+            token: token,
+            user: user,
+            email: email
+        })
+        console.log(user);
         $(".info-text").html(user);
         $(".login-text").html(user);
   // ...
@@ -211,46 +232,64 @@ function signIn (){
     });
 }
 function signOut(){
-    firebase.auth().signOut().then(function(){
+    firbase.auth().signOut().then(function(){
         
     }).catch(function(error){
         
     })
 }
 
-//   var map;
-//      var infowindow;
-//      function initMap() {
-//        var kirkman = {lat: 28.52188, lng: -81.4674207};
-//        map = new google.maps.Map(document.getElementById('grocery-map'), {
-//          center: kirkman,
-//          zoom: 13
-//        });
-//        
-//        infowindow = new google.maps.InfoWindow();
-//        var service = new google.maps.places.PlacesService(map);
-//        service.nearbySearch({
-//          location: kirkman,
-//          radius: 5000,
-//          name: ['publix', 'walmart']
-//        }, callback);
-//      }
-//      function callback(results, status) {
-//        if (status === google.maps.places.PlacesServiceStatus.OK) {
-//          for (var i = 0; i < results.length; i++) {
-//            createMarker(results[i]);
-//          }
-//        }
-//      }
-//      function createMarker(place) {
-//        var placeLoc = place.geometry.location;
-//        var marker = new google.maps.Marker({
-//          map: map,
-//          position: place.geometry.location
-//        });
-//        google.maps.event.addListener(marker, 'click', function() {
-//          infowindow.setContent(place.name);
-//          infowindow.open(map, this);
-//        });
-//      }
+
+//$("#abcRioButtonContentWrapper").on("click",function(event){
+//    var provider = new firebase.auth.GoogleAuthProvider();
+//    provider.addScope('profile');
+//    provider.addScope('email');
+//    firebase.auth().signInWithPopup(provider).then(function(result) {
+// // This gives you a Google Access Token.
+//    var token = result.credential.accessToken;
+// // The signed-in user info.
+//    var user = result.user;
+//});
+//
+//		});
+
+
+
+
+
+   var map;
+      var infowindow;
+      function initMap() {
+        var kirkman = {lat: 28.52188, lng: -81.4674207};
+        map = new google.maps.Map(document.getElementById('grocery-map'), {
+          center: kirkman,
+          zoom: 9
+        });
+        
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: kirkman,
+          radius: 50000,
+          name: ['publix', 'walmart']
+        }, callback);
+      }
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
 

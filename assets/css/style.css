@@ -175,7 +175,7 @@ nav {
 }
 
 #recipeSearchInput {
-	width: 50%;
+	width: 75%;
 	float: left;
 	margin-right: 1%;
 }
@@ -188,7 +188,7 @@ nav {
 }
 
 #recipeSearchBtn {
-	width: 19%;
+	width: 21%;
 	height: 48px;
 	line-height: 48px;
 	float: left;
@@ -446,17 +446,17 @@ iframe {
 .recipeName {
 	font-size: 1.1em !important;
 	white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .recipeCalories, .recipeProtein, .recipeFat {
- width: 33.333%;
- padding: 1%;
- float: left;
- color: #fff;
- text-align: center;
- margin-bottom: 10px;
+	width: 33.333%;
+	padding: 1%;
+	float: left;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 10px;
 }
 
 .recipeCalories {
@@ -572,7 +572,9 @@ iframe {
 	width: 150px;
 	line-height: 150px;
     text-align: center;
-    background-color: #fff;
+    background-color: #2bbbad;
+    color: #fff;
+    font-weight: bold;
     border: 1px solid #666;
     float: left;
     margin-right: 20px;
@@ -603,6 +605,9 @@ iframe {
     background-color: rgba(26,187,156,.9);
     color: #fff;
     width: 100%;
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 
@@ -612,7 +617,7 @@ iframe {
 @media screen and (max-width: 1150px) {
 
 	#recipeSearchInput {
-		width: 60%;
+		width: 100%;
 	}
 	#recipeSearchDropdown {
 		width: 35%;

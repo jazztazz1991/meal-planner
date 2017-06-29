@@ -179,7 +179,7 @@ function addToMealPlan(){
             key: database.ref().push().key
         }
         //push key
-        database.ref().child(user).set(foodInfo);
+        database.ref().child(childSnapshot.val().key).set(foodInfo);
        
     })
 }

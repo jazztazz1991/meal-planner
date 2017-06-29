@@ -198,7 +198,6 @@ function signIn (){
         
         $(".info-text").html(user);
         $(".login-text").html(user);
-        recipeSearch();
   // ...
     }).catch(function(error) {
       // Handle Errors here.

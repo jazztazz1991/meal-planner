@@ -531,7 +531,7 @@ iframe {
 
 
 /*Meal Planner Page*/
-.box{
+.box {
     background-color: #eee;
     width: 100%;
     height: 150px;
@@ -540,6 +540,10 @@ iframe {
     font-weight: 700;
     float: left;
     box-shadow: inset 0px 1px 5px #222;;
+}
+
+#options {
+	display: inline-block;
 }
 
 .mealPlanRecipes{
@@ -572,6 +576,30 @@ iframe {
     float: left;
     margin-right: 20px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.recipesChosen {
+	width:;
+}
+
+.storedRecipe {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+	border: 1px solid #aaa;
+}
+
+.foodNameSelected {
+	position: absolute;
+    top: 0px;
+    left: 0;
+    height: 35px;
+    text-align: center;
+    margin: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    width: 160px;
 }
 
 

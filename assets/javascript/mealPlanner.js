@@ -70,19 +70,19 @@ function mealChoice(){
         console.log(ind);
         switch(dayOfWeek){
             case 1:
-                $("#box1").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class'foodNameSelected'>" + holdName[ind] + "</p></div>");
+                $("#box1").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class='foodNameSelected'>" + holdName[ind] + "</p></div>");
                 break;
             case 2:
-                $("#box2").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class'foodNameSelected'>" + holdName[ind] + "</p></div>");
+                $("#box2").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class='foodNameSelected'>" + holdName[ind] + "</p></div>");
                 break;
             case 3:
-                $("#box3").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class'foodNameSelected'>" + holdName[ind] + "</p></div>");
+                $("#box3").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class='foodNameSelected'>" + holdName[ind] + "</p></div>");
                 break;
             case 4:
-                $("#box4").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class'foodNameSelected'>" + holdName[ind] + "</p></div>");
+                $("#box4").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class='foodNameSelected'>" + holdName[ind] + "</p></div>");
                 break;
             case 5:
-                $("#box5").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class'foodNameSelected'>" + holdName[ind] + "</p></div>");
+                $("#box5").html("<div class='storedRecipe'><img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p class='foodNameSelected'>" + holdName[ind] + "</p></div>");
                 break;
                }
     })

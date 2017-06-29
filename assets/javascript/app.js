@@ -67,6 +67,9 @@ $(".groceryLink").on("click", function() {
   $(".recipeLink").removeClass("active-page");
   $(".groceryLink").addClass("active-page");
   $("#page-content").attr("src", "pantry.html");
+    initMap();
+    callback();
+    createMarker();
 });
 
 //Login code
@@ -110,6 +113,12 @@ var ingredientListArray = [];
 
 
  $("#recipeSearchBtn").on("click", function() {
+     $(".homeLink").removeClass("active-page");
+     $(".mealLink").removeClass("active-page");
+     $(".recipeLink").addClass("active-page");
+     $(".groceryLink").removeClass("active-page");
+     $("#page-content").attr("src", "recipes.html");
+     $("iframe").contents().find("#recipeWrapper").empty();
        foodSearch = $("#recipeSearchInput").val().trim();
        recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
        $.ajax({
@@ -162,7 +171,7 @@ function addToMealPlan(){
         photo.push(foodPictureArray[index]);
         name.push(foodNameArray[index]);
         ingredients.push(ingredientListArray[index]);
-        url.push(foodlLinkArray[index]);
+        //url.push(foodlLinkArray[index]);
         
         var foodInfo = {
             foodName:name,
@@ -193,25 +202,42 @@ function addToMealPlan(){
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
-//function signIn (){
-//    firebase.auth().signInWithPopup(provider).then(function(result) {
-//  // This gives you a Google Access Token. You can use it to access the Google API.
-//  var token = result.credential.accessToken;
-//  // The signed-in user info.
-//  var user = result.user;
-//  // ...
-//}).catch(function(error) {
-//  // Handle Errors here.
-//  var errorCode = error.code;
-//  var errorMessage = error.message;
-//  // The email of the user's account used.
-//  var email = error.email;
-//  // The firebase.auth.AuthCredential type that was used.
-//  var credential = error.credential;
-//  // ...
-//});
-//}
-
+function signIn (){
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+        
+        var email = result.email;
+        
+        database.ref().child(user).set({
+            token: token,
+            user: user,
+            email: email
+        })
+        
+        $(".info-text").html(user);
+        $(".login-text").html(user);
+  // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+}
+function signOut(){
+    firbase.auth().signOut().then(function(){
+        
+    }).catch(function(error){
+        
+    })
+}
 
 
 //$("#abcRioButtonContentWrapper").on("click",function(event){
@@ -226,4 +252,44 @@ var provider = new firebase.auth.GoogleAuthProvider();
 //});
 //
 //		});
+
+
+
+
+
+   var map;
+      var infowindow;
+      function initMap() {
+        var kirkman = {lat: 28.52188, lng: -81.4674207};
+        map = new google.maps.Map(document.getElementById('grocery-map'), {
+          center: kirkman,
+          zoom: 13
+        });
+        
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: kirkman,
+          radius: 5000,
+          name: ['publix', 'walmart']
+        }, callback);
+      }
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
 

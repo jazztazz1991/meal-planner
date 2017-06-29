@@ -11,28 +11,79 @@
 
 
 var database = firebase.database();
-
+var divs = [];
+var index = 0;
+var dayOfWeek = 0;
 
 database.ref().on("child_added", function(childSnapshot, prevChildKey){       
     var foodNamePicked = childSnapshot.val().foodName;
             var foodImgPicked = childSnapshot.val().foodPic;
     var recipeUrl = childSnapshot.val().url;
-            $("#recipeSection").append("<div class='mealPlanRecipes' id='recipe" + childSnapshot.val().key + "' draggable='true' ondragstart='drag(event)'> <img  data-index='" + recipeUrl + "' src='" + foodImgPicked + "'><p>" + foodNamePicked + "</p></div>");
+            
+        var holdDiv = "<div class='mealPlanRecipes' id='recipe" + childSnapshot.val().key + "'> <img  data-index='" + index + "' src='" + foodImgPicked + "' class='chooseMeal'><p>" + foodNamePicked + "</p></div>";
+    
+    divs.push(holdDiv);
+    $("#recipeSection").html(divs);
+    index++;
         })
 
 
+$("#box1").on("click", function(){
+  dayOfWeek = 1;
+    console.log(dayOfWeek);
+    mealChoice();
+})
+$("#box2").on("click", function(){
+  dayOfWeek = 2;
+    console.log(dayOfWeek);
+    mealChoice();
+})
+$("#box3").on("click", function(){
+  dayOfWeek = 3;
+    console.log(dayOfWeek);
+    mealChoice()
+})
+$("#box4").on("click", function(){
+  dayOfWeek = 4;
+    console.log(dayOfWeek);
+    mealChoice()
+})
+$("#box5").on("click", function(){
+  dayOfWeek = 5;
+    console.log(dayOfWeek);
+    mealChoice()
+})
+function mealChoice(){
+    console.log("mealChoice Running");
+    $(".chooseMeal").on("click", function(){
+        console.log("function running");
+        var ind = $(this).attr("data-index");
+        console.log(ind);
+        switch(dayOfWeek){
+            case 1:
+                $("#box1").html(divs[ind]);
+                console.log("switch1");
+                break;
+            case 2:
+                $("#box2").html(divs[ind]);
+                console.log("switch2");
+                break;
+            case 3:
+                $("#box3").html(divs[ind]);
+                console.log("switch3");
+                break;
+            case 4:
+                $("#box4").html(divs[ind]);
+                console.log("switch4");
+                break;
+            case 5:
+                $("#box5").html(divs[ind]);
+                console.log("switch5");
+                break;
+               }
+    })
+}
 
 
- function allowDrop(ev){
-   ev.preventDefault();
- }
 
- function drag(ev){
-   ev.dataTransfer.setData("text", ev.target.id);
- }
-
- function drop(ev){
-   ev.preventDefault();
-   var data = ev.dataTransfer.getData("text");
-     ev.target.appendChild(document.getElementById(data));
- }
+ 

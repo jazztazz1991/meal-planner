@@ -72,20 +72,7 @@ $(".groceryLink").on("click", function() {
     createMarker();
 });
 
-//Login code
-$(".notLoggedIn").on("click", function() {
-  signIn();
-  $(".notLoggedIn").hide();
-  $(".loggedIn").show();
-});
 
-//Logout Code
-$("#dropdown1").on("click", function() {
-  signOut();
-  $(".loggedIn").hide();
-  $(".notLoggedIn").show();
-
-})
 
 // END Daniel's code
 
@@ -93,7 +80,7 @@ $("#dropdown1").on("click", function() {
  var foodAppKey = "8d725288375b632e8ca8b8f5e89d9394";
  var foodSearch = "";
  var suggestedFood = ["pizza", "chicken marsala", "shrimp"];
- var recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&healtLabels='vegan'&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
+ var recipeUrl = "https://api.edamam.com/search?q=" + foodSearch + "&healtLabels=vegan&app_id=" + foodKey + "&app_key=" + foodAppKey + "&to=9";
 var caloriesPer;
 var fatPer;
 var proteinPer;
@@ -186,78 +173,7 @@ function addToMealPlan(){
     })
 }
 
- function allowDrop(ev){
-   ev.preventDefault();
- }
-
- function drag(ev){
-   ev.dataTransfer.setData("text", ev.target.id);
- }
-
- function drop(ev){
-   ev.preventDefault();
-   var data = ev.dataTransfer.getData("text");
-   ev.target.appendChild(document.getElementById(data));
- }
-
-var provider = new firebase.auth.GoogleAuthProvider();
-
-function signIn (){
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-        
-        var email = result.email;
-        
-        database.ref().child(user).set({
-            token: token,
-            user: user,
-            email: email
-        })
-        console.log(user);
-        $(".info-text").html(user);
-        $(".login-text").html(user);
-  // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
-}
-function signOut(){
-    firbase.auth().signOut().then(function(){
-        
-    }).catch(function(error){
-        
-    })
-}
-
-
-//$("#abcRioButtonContentWrapper").on("click",function(event){
-//    var provider = new firebase.auth.GoogleAuthProvider();
-//    provider.addScope('profile');
-//    provider.addScope('email');
-//    firebase.auth().signInWithPopup(provider).then(function(result) {
-// // This gives you a Google Access Token.
-//    var token = result.credential.accessToken;
-// // The signed-in user info.
-//    var user = result.user;
-//});
-//
-//		});
-
-
-
-
-
-   var map;
+      var map;
       var infowindow;
       function initMap() {
         var kirkman = {lat: 28.52188, lng: -81.4674207};

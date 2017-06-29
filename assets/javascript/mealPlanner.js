@@ -16,7 +16,6 @@ var index = 0;
 var dayOfWeek = 0;
 var holdName = [];
 var holdPhoto = [];
-//var holdUrl = [];
 var holdKey = [];
 
 database.ref().on("child_added", function(childSnapshot, prevChildKey){       
@@ -26,7 +25,6 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey){
     
     holdName.push(foodNamePicked);
     holdPhoto.push(foodImgPicked);
-    //holdurl.push(recipeUrl);
     holdKey.push(childSnapshot.val().key)
             
         var holdDiv = "<div class='mealPlanRecipes' id='recipe" + childSnapshot.val().key + "'> <img  data-index='" + index + "' src='" + foodImgPicked + "' class='chooseMeal'><p>" + foodNamePicked + "</p></div>";

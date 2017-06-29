@@ -111,7 +111,6 @@ var foodPictureArray=[];
 var foodNameArray=[];
 var ingredientListArray = [];
 
-function recipeSearch(){
  $("#recipeSearchBtn").on("click", function() {
      $(".homeLink").removeClass("active-page");
      $(".mealLink").removeClass("active-page");
@@ -160,7 +159,6 @@ function recipeSearch(){
 
       });
      });
-}
 
 function addToMealPlan(){
     $("iframe").contents().find(".addedBtn").on("click", function(){

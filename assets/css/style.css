@@ -121,6 +121,27 @@ nav {
 	top: 64px !important;
 }
 
+.notLoggedIn {
+	display: initial;
+	width: 170px;
+	height: 64px;
+	text-align: center;
+	line-height: 64px;
+	color: #fff;
+}
+
+.notLoggedIn:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+
+.notLoggedIn li {
+	float: initial;
+}
+
+.loggedIn {
+	display: none;
+}
+
 .logged-profile-img {
 	max-height: 37px;
 	margin-right: 10px;
@@ -424,6 +445,9 @@ iframe {
 
 .recipeName {
 	font-size: 1.1em !important;
+	white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
 }
 
 .recipeCalories, .recipeProtein, .recipeFat {

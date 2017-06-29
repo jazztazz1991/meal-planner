@@ -33,7 +33,7 @@ function closeNav() {
     $(".nav-open").css("display", "none");
 }
 
-$(".homeLink").on("click", function () {
+$(".homeLink").on("click", function() {
   $(".homeLink").addClass("active-page");
   $(".mealLink").removeClass("active-page");
   $(".recipeLink").removeClass("active-page");
@@ -41,7 +41,7 @@ $(".homeLink").on("click", function () {
   $("#page-content").attr("src", "mainDashboard.html");
 });
 
-$(".mealLink").on("click", function () {
+$(".mealLink").on("click", function() {
   $(".homeLink").removeClass("active-page");
   $(".mealLink").addClass("active-page");
   $(".recipeLink").removeClass("active-page");
@@ -49,21 +49,41 @@ $(".mealLink").on("click", function () {
   $("#page-content").attr("src", "MealPlanner.html");
 });
 
-$(".recipeLink").on("click", function () {
+function recipeLinkClick() {
   $(".homeLink").removeClass("active-page");
   $(".mealLink").removeClass("active-page");
   $(".recipeLink").addClass("active-page");
   $(".groceryLink").removeClass("active-page");
   $("#page-content").attr("src", "recipes.html");
+}
+
+$(".recipeLink").on("click", function() {
+  recipeLinkClick();
 });
 
-$(".groceryLink").on("click", function () {
+$(".groceryLink").on("click", function() {
   $(".homeLink").removeClass("active-page");
   $(".mealLink").removeClass("active-page");
   $(".recipeLink").removeClass("active-page");
   $(".groceryLink").addClass("active-page");
   $("#page-content").attr("src", "pantry.html");
 });
+
+//Login code
+$(".notLoggedIn").on("click", function() {
+  signIn();
+  $(".notLoggedIn").hide();
+  $(".loggedIn").show();
+});
+
+//Logout Code
+$("#dropdown1").on("click", function() {
+  signOut();
+  $(".loggedIn").hide();
+  $(".notLoggedIn").show();
+
+})
+
 // END Daniel's code
 
       var foodKey = "f9e3dbd1";

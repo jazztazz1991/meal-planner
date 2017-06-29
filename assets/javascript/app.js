@@ -214,7 +214,7 @@ function signIn (){
     });
 }
 function signOut(){
-    firbase.auth().signOut().then(function(){
+    firebase.auth().signOut().then(function(){
         
     }).catch(function(error){
         

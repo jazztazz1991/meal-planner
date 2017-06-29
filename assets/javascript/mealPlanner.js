@@ -14,11 +14,20 @@ var database = firebase.database();
 var divs = [];
 var index = 0;
 var dayOfWeek = 0;
+var holdName = [];
+var holdPhoto = [];
+//var holdUrl = [];
+var holdKey = [];
 
 database.ref().on("child_added", function(childSnapshot, prevChildKey){       
     var foodNamePicked = childSnapshot.val().foodName;
             var foodImgPicked = childSnapshot.val().foodPic;
     var recipeUrl = childSnapshot.val().url;
+    
+    holdName.push(foodNamePicked);
+    holdPhoto.push(foodImgPicked);
+    //holdurl.push(recipeUrl);
+    holdKey.push(childSnapshot.val().key)
             
         var holdDiv = "<div class='mealPlanRecipes' id='recipe" + childSnapshot.val().key + "'> <img  data-index='" + index + "' src='" + foodImgPicked + "' class='chooseMeal'><p>" + foodNamePicked + "</p></div>";
     
@@ -61,24 +70,19 @@ function mealChoice(){
         console.log(ind);
         switch(dayOfWeek){
             case 1:
-                $("#box1").html(divs[ind]);
-                console.log("switch1");
+                $("#box1").html("<div class='mealPlanRecipes' id='recipe" + holdKey[ind] + "'> <img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p>" + holdName[ind] + "</p></div>");
                 break;
             case 2:
-                $("#box2").html(divs[ind]);
-                console.log("switch2");
+                $("#box2").html("<div class='mealPlanRecipes' id='recipe" + holdKey[ind] + "'> <img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p>" + holdName[ind] + "</p></div>");
                 break;
             case 3:
-                $("#box3").html(divs[ind]);
-                console.log("switch3");
+                $("#box3").html("<div class='mealPlanRecipes' id='recipe" + holdKey[ind] + "'> <img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p>" + holdName[ind] + "</p></div>");
                 break;
             case 4:
-                $("#box4").html(divs[ind]);
-                console.log("switch4");
+                $("#box4").html("<div class='mealPlanRecipes' id='recipe" + holdKey[ind] + "'> <img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p>" + holdName[ind] + "</p></div>");
                 break;
             case 5:
-                $("#box5").html(divs[ind]);
-                console.log("switch5");
+                $("#box5").html("<div class='mealPlanRecipes' id='recipe" + holdKey[ind] + "'> <img  data-index='" + ind + "' src='" + holdPhoto[ind] + "' class='chooseMeal'><p>" + holdName[ind] + "</p></div>");
                 break;
                }
     })
